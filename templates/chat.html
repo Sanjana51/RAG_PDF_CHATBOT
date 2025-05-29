@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat with PDF</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body style="background-image: url('https://images.unsplash.com/photo-1662974770404-468fd9660389?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); background-size: cover; background-position: center;">
+    <div class="container">
+        <h1>Chat with PDF</h1>
+        <!-- Flash messages block starts here -->
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul class="flashes">
+              {% for message in messages %}
+                <li>{{ message }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+        <!-- Flash messages block ends here -->
+        <form method="post">
+            <input type="text" name="question" placeholder="Ask a question..." required>
+            <button type="submit">Send</button>
+        </form>
+        {% if question %}
+        <div class="chat-box">
+            <p><strong>You:</strong> {{ question }}</p>
+            <p><strong>Bot:</strong> {{ answer }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
